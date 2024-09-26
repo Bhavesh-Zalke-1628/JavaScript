@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+    body{
+        background-color: #000;
+        color: #fff;
+    }
+    </style>
+</head>
+<body>
+    <ul class="language">
+        <li>hello</li>
+    </ul>
+    <script >
+        function addLanguage(languageName){
+            const listItem = document.createElement("li")
+            listItem.innerHTML=`${languageName}`;
+            document.querySelector('.language').appendChild(listItem)
+        }
+        // addLanguage('cpp')
+        addLanguage('c')
+        addLanguage('visual basic')
+        // addLanguage('java')
+        // addLanguage('core java')
+
+        function withOpti (languageName){
+            const listItem = document.createElement("li")
+            listItem.appendChild(document.createTextNode(languageName))
+            document.querySelector('.language').appendChild(listItem)
+        }
+        withOpti('angular')
+        // how to edit the using the DOM
+
+        const secondLan = document.querySelector('li:nth-child(3)')
+        // secondLan.innerHTML = 'mojo'
+        const newLi = document.createElement('li')
+        newLi.textContent = 'mojo'
+        secondLan.replaceWith(newLi)
+
+        // edit 
+        // using the outerHTML 
+        const firstLang = document.querySelector('li:first-child')
+        firstLang.outerHTML= '<li>TypeScript</li>'
+
+        // remove 
+        const lastLang = document.querySelector('li:last-child')
+        lastLang.remove()
+</script>
+</body>
+</html>

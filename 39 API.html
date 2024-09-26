@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #card {
+            height: 400px;
+            width: 300px;
+            border: 1 px solid #000;
+            background-color: rgb(45, 142, 109);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #card img {
+            height: 70%;
+            width: 90%;
+            margin-top: 10px;
+            border-radius: 10px;
+            position: relative;
+            align-self: center;
+        }
+
+        #card button {
+            height: 50px;
+            width: 150px;
+            align-self: center;
+            background-color: #59d4bf;
+            font-size: 25px;
+            font-weight: 600;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body style="background-color: #71e3d0;">
+
+    <div id="card">
+        <img src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="">
+        <button id="btn">Follow</button>
+    </div>
+    <script>
+        const xhr = new XMLHttpRequest()
+        // const requesUrl = 'https://api.github.com/users/Bhavesh-Zalke-1628 '
+        const requesUrl = 'abc'
+        xhr.open('GET', requesUrl)
+        xhr.onreadystatechange = function () {
+            const card = document.querySelector("#card")
+            const img = document.querySelector("img")
+            flag = 1
+            if (xhr.readyState === 4) {
+                //  to conver the string data in the object for using the JSON used the .parse method...
+                const data = JSON.parse(this.responseText)
+                card.innerHTML = `<img src="${data.avatar_url}"alt=""> 
+              <button id="btn">Follow</button>`
+                const btn = document.getElementById("btn")
+                btn.addEventListener('click', function () {
+                    if (flag == 0) {
+                        btn.textContent = 'Follow'
+                        flag = 1
+                    } else {
+                        btn.textContent = 'UnFollow'
+                        flag = 0
+                    }
+                })
+            }
+        }
+        xhr.send();
+    </script>
+</body>
+
+</html>
+
+
+
+<!-- this is the current context value  -->
